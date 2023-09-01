@@ -1,5 +1,6 @@
 {
   "name": "dash-app",
+  "homepage": "https://frontendkev.github.io/dash-app",
   "version": "1.0.0",
   "description": "dashboard management application",
   "main": "index.js",
