@@ -1,32 +1,28 @@
 {
   "name": "dash-app",
-  "homepage": "https://frontendkev.github.io/dash-app",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "dashboard management application",
+  "main": "index.js",
+  "repository": "https://github.com/frontendkev/dash-app.git",
+  "author": "frontendkev <kevfrontdev@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "chart.js": "^4.4.0",
+    "and": "^0.0.3",
+    "i": "^0.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^5.0.1",
+    "recharts": "^2.8.0",
+    "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -41,7 +37,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0",
-    "tailwindcss": "^3.3.3"
+    "web-vitals": "^3.4.0"
   }
 }
