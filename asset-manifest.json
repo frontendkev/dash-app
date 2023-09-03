@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/dash-app/static/css/main.90de672c.css",
-    "main.js": "/dash-app/static/js/main.3029ccea.js",
+    "main.css": "/dash-app/static/css/main.2832dd34.css",
+    "main.js": "/dash-app/static/js/main.317fa02a.js",
     "static/js/496.23633eb8.chunk.js": "/dash-app/static/js/496.23633eb8.chunk.js",
     "static/media/Quicksand-Regular.ttf": "/dash-app/static/media/Quicksand-Regular.04b11c8f0d4d58c1bed1.ttf",
     "static/media/Quicksand-SemiBold.ttf": "/dash-app/static/media/Quicksand-SemiBold.80ffdcf8e73fc889b11f.ttf",
     "static/media/Quicksand-Bold.ttf": "/dash-app/static/media/Quicksand-Bold.a0a11318dd0b528da77d.ttf",
     "static/media/logo.svg": "/dash-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/dash-app/index.html",
-    "main.90de672c.css.map": "/dash-app/static/css/main.90de672c.css.map",
-    "main.3029ccea.js.map": "/dash-app/static/js/main.3029ccea.js.map",
+    "main.2832dd34.css.map": "/dash-app/static/css/main.2832dd34.css.map",
+    "main.317fa02a.js.map": "/dash-app/static/js/main.317fa02a.js.map",
     "496.23633eb8.chunk.js.map": "/dash-app/static/js/496.23633eb8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90de672c.css",
-    "static/js/main.3029ccea.js"
+    "static/css/main.2832dd34.css",
+    "static/js/main.317fa02a.js"
   ]
 }
