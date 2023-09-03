@@ -100,28 +100,19 @@ export default function Home() {
 
     
 
-    const weeklySales = [
+    const categorySales = [
         {
-            day: 'mon', sold: 800, sales: "$800k", orders: 200
+            category: 'phones', sold: 800, sales: "$800k"
         },
         {
-            day: 'tue', sold: 2700, sales: "$270k", orders: 3500
+            category: 'tablets', sold: 2700, sales: "$270k"
         },
         {
-            day: 'wed', sold: 1700, sales: "$170k", orders: 500
+            category: 'home audio', sold: 1700, sales: "$170k"
         },
         {
-            day: 'thu', sold: 3500, sales: "$350k", orders: 4500
-        },
-        {
-            day: 'fri', sold: 2500, sales: "$250k", orders: 1000
-        },
-        {
-            day: 'sat', sold: 4000, sales: "$400k", orders: 3000
-        },
-        {
-            day: 'sun', sold: 2000, sales: "$200k", orders: 3000
-        },
+            category: 'tv sets', sold: 1000, sales: "$100k"
+        }
     ]
 
 
@@ -183,14 +174,14 @@ export default function Home() {
                 <section className="relative w-full landscape:lg:h-[15em] portrait:h-[70vh] portrait:gap-y-[1.5em] flex landscape:flex-row portrait:flex-col justify-center landscape:gap-x-[2em]">
                     <section className="relative landscape:lg:w-[45%] portrait:w-full h-full bg-[#ffffff] flex flex-col items-center rounded-md shadow-light">
                         <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                            <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
-                                <span className="capitalize"> sales</span> by <span className="capitalize">location</span>
+                            <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
+                                <span className="capitalize">sales</span> by <span className="capitalize">location</span>
                             </h4>
                         </div>
                         <ResponsiveContainer width='100%' height="100%">
                             <BarChart margin={{ top: 30, left: 30, right: 30, bottom: 20 }} data={locationData}>
                                 <Tooltip />
-                                <Bar dataKey={"sales"} barSize={60} fill={"#2a4994"}>
+                                <Bar dataKey={"sales"} barSize={60} fill={"#6a80b4"}>
                                     <LabelList dataKey={"totalSales"} position={'top'} fontSize={13} className={'font-quicksandBold'} />
                                 </Bar>
                                 <XAxis dataKey={"name"} orientation={'bottom'} fontSize={15} className={"capitalize font-quicksandSemiBold"} />
@@ -200,25 +191,22 @@ export default function Home() {
 
                     <section className="relative landscape:lg:w-[45%] h-full bg-[#ffffff] flex flex-col items-center rounded-md shadow-light">
                         <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                            <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
-                                <span className="capitalize"> sales</span> and <span className="capitalize">average order value</span> by <span className="capitalize"> year</span>
+                            <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
+                                <span className="capitalize">sales</span> by <span className="capitalize">month</span>
                             </h4>
                         </div>
                         <ResponsiveContainer width='100%' height="100%">
 
-                            <ComposedChart data={salesData} margin={{ top: 30, right: 30, left: 30, bottom: 20 }}>
-                                <CartesianGrid stroke={'#f5f5f5'} strokeDasharray={"3 3"} />
-
-                                <Bar type={"monotone"} dataKey={"sales"} barSize={40} fill={"#2a4994"}>
-                                    <LabelList dataKey={"x"} position={'top'} fontSize={13} className={'font-quicksandBold'} />
-                                </Bar>
-                                <Line type={"monotone"} dataKey={"orders"} stroke={'#9447ff'} strokeWidth={2}>
-                                    <LabelList dataKey={"orders"} position={'top'} fontSize={13} className={'font-quicksandBold text-[10px]'} />
-                                </Line>
-                                <XAxis dataKey={"year"} fontSize={13} className={'font-quicksandSemiBold'} />
-                                <YAxis type="number" includeHidden width={30} fontSize={10} />
+                            <BarChart data={monthlySales} margin={{right: 30}}>
+                                <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
                                 <Tooltip />
-                            </ComposedChart>
+                                <Bar type={"monotone"} dataKey={"sold"} fill={"#6a80b4"} radius={2} >
+                                    <LabelList stroke="grey" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandRegular'} />
+                                </Bar>
+                                <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
+                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
+
+                            </BarChart>
                         </ResponsiveContainer>
 
                     </section>
@@ -228,24 +216,22 @@ export default function Home() {
                         <div className="relative w-full h-full bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
                             <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
                                 <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
-                                    <span className="capitalize">sales and average order value</span> by <span className="capitalize">month</span>
+                                    <span className="capitalize">average order value</span> by <span className="capitalize">month</span>
                                 </h4>
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <ComposedChart data={monthlySales} margin={{right: 30}}>
-                                   
-                                    <Bar type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
-                                        <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
-                                    </Bar>
-                                    <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
-
+                                <LineChart data={monthlySales} margin={{right: 30}}>
+                                    <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
+                                    <Tooltip />
+                                    <Line type={"monotone"} dataKey={"orders"} strokeWidth={1} stroke={'red'} fill={"#e11d48"} opacity={0.8}>
+                                        <LabelList stroke="grey" strokeWidth={0.5} dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandRegular'} />
                                     </Line>
                                     <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
                                     <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
-                                    <Tooltip />
+
                                     <Legend verticalAlign={'top'} fontSize={50} align="center" iconType="rect" iconSize={8} />
-                                </ComposedChart>
+                                </LineChart>
                             </ResponsiveContainer>
                         </div>
 
@@ -256,26 +242,22 @@ export default function Home() {
                         <div className="relative w-full h-full bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
                             <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
                                 <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
-                                    <span className="capitalize">sales and average order value</span> by <span className="capitalize">week</span>
+                                    <span className="capitalize">sales</span> by <span className="capitalize">subcategory</span>
                                 </h4>
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <LineChart data={weeklySales}>
+                                <BarChart data={categorySales} margin={{left:30}}>
                                     <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
-
-                                    <Line type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
-                                        <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
-                                    </Line>
-                                    <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
-                                        <LabelList dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandBold'} strokeWidth={0.5} stroke='red' />
-                                    </Line>
-                                    <XAxis dataKey={"day"} type="category" fontSize={10} className={'font-quicksandSemiBold'} />
-                                    <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[0, 5000]} stroke='red' strokeWidth={0.5} />
-                                    <YAxis yAxisId={1} fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 5000]} tickCount={5} tickFormatter={(label) => `${'$' + label}k`} stroke='blue' strokeWidth='0.5px' />
                                     <Tooltip />
-                                    <Legend verticalAlign={'top'} fontSize={50} align="center" type='rect' iconType="rect" iconSize={8} />
-                                </LineChart>
+                                    <Bar type={"monotone"} dataKey={'sold'} barSize={60} fill={'#6a80b4'}>
+                                        <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
+                                    </Bar>
+                                    <XAxis dataKey={"category"} type="category" fontSize={10} className={'font-quicksandSemiBold'} />
+                                    
+                                    <YAxis fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 5000]} tickCount={5} tickFormatter={(label) => `${'$' + label}k`} stroke='blue' strokeWidth='0.5px' />
+
+                                </BarChart>
                             </ResponsiveContainer>
                         </div>
 
