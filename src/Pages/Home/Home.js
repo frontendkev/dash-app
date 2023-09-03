@@ -11,7 +11,10 @@ import {
     ResponsiveContainer,
     LineChart,
     Label,
-    Legend
+    Legend,
+    PieChart,
+    Pie,
+    Cell
 } from "recharts";
 
 
@@ -56,76 +59,128 @@ export default function Home() {
         },
     ]
 
-    const phoneSales = [
+    const monthlySales = [
         {
-            year: 2018, sold: 1000, sales: "$0.7m", orders: 300
+            month: 'jan', sold: 20000, sales: "$2m", orders: 15000
         },
         {
-            year: 2019, sold: 500, sales: "$500k", orders: 1150
+            month: "feb", sold: 45000, sales: "$4.5m", orders: 20000
         },
         {
-            year: 2020, sold: 1700, sales: "$1.3m", orders: 1000
+            month: "mar", sold: 30000, sales: "$3m", orders: 35000
         },
         {
-            year: 2021, sold: 2000, sales: "$1.5m", orders: 2400
+            month: "apr", sold: 40000, sales: "$4m", orders: 45000
         },
         {
-            year: 2022, sold: 1400, sales: "$1m", orders: 2000
+            month: "may", sold: 25000, sales: "$2.5m", orders: 20000
         },
         {
-            year: 2023, sold: 3000, sales: "$2.2m", orders: 2500
-        },
-    ]
-
-    const clothingSales = [
-        {
-            year: 2018, sold: 800, sales: "$400k", orders: 200
+            month: "jun", sold: 35000, sales: "$3.5m", orders: 30000
         },
         {
-            year: 2019, sold: 2700, sales: "$800k", orders: 3500
+            month: 'jul', sold: 50000, sales: "$5.5m", orders: 50000
         },
         {
-            year: 2020, sold: 1700, sales: "$600k", orders: 500
+            month: "aug", sold: 40000, sales: "$4m", orders: 25000
         },
         {
-            year: 2021, sold: 3500, sales: "$900k", orders: 4500
+            month: "sep", sold: 45000, sales: "$4.5m", orders: 40000
         },
         {
-            year: 2022, sold: 2500, sales: "$700k", orders: 1000
+            month: "oct", sold: 25000, sales: "$2.5m", orders: 30000
         },
         {
-            year: 2023, sold: 5000, sales: "$1.8m", orders: 3700
+            month: "nov", sold: 40000, sales: "$4m", orders: 40000
+        },
+        {
+            month: "dec", sold: 45000, sales: "$4.5m", orders: 55000
         },
     ]
 
-    const furnitureSales = [
+    
+
+    const weeklySales = [
         {
-            year: 2018, sold: 800, sales: "$300k", orders: 200
+            day: 'mon', sold: 800, sales: "$800k", orders: 200
         },
         {
-            year: 2019, sold: 3700, sales: "$1.3m", orders: 4500
+            day: 'tue', sold: 2700, sales: "$270k", orders: 3500
         },
         {
-            year: 2020, sold: 1700, sales: "$600k", orders: 3000
+            day: 'wed', sold: 1700, sales: "$170k", orders: 500
         },
         {
-            year: 2021, sold: 5500, sales: "$1.8m", orders: 4500
+            day: 'thu', sold: 3500, sales: "$350k", orders: 4500
         },
         {
-            year: 2022, sold: 3000, sales: "$1m", orders: 4000
+            day: 'fri', sold: 2500, sales: "$250k", orders: 1000
         },
         {
-            year: 2023, sold: 5000, sales: "$1.6m", orders: 5800
+            day: 'sat', sold: 4000, sales: "$400k", orders: 3000
         },
+        {
+            day: 'sun', sold: 2000, sales: "$200k", orders: 3000
+        },
+    ]
+
+
+    const colors = [
+        '#2a4994', '#e11d48'
+    ]
+
+    const pieSales = [
+        {
+            name: 'delivered',
+            value: 80,
+            percentage: '80%'
+        },
+        {
+            name: 'returned',
+            value: 20,
+            percentage: "20%"
+        }
+    ]
+
+    function renderLabel(entry) {
+        return entry.percentage
+    }
+
+    const returnReasons = [
+        {
+            type: 'delivery',
+            reason: 'wrong item',
+            count: 345
+        },
+        {
+            type: 'product',
+            reason: 'not fitting expectation',
+            count: 138
+        },
+        {
+            type: 'quality',
+            reason: 'defective item',
+            count: 531
+        },
+        {
+            type: 'onsite',
+            reason: 'description mismatch',
+            count: 145
+        },
+        {
+            type: 'delivery',
+            reason: 'missing item/part',
+            count: 215
+        }
     ]
 
     return (
-        <section className={'relative w-full min-h-screen flex landscape:flex-row portrait:flex-col bg-[#d3d8e0]'}>
+        <section className={'relative w-full landscape:h-[85vh] portrait:min-h-screen flex landscape:flex-row portrait:flex-col bg-[#d3d8e0] overflow-hidden'}>
             <div className="absolute w-full landscape:lg:h-[8em] bg-[#253761]">
 
             </div>
-            <section className="relative landscape:lg:w-[75%] portrait:p-[1em] min-h-[100vh] flex flex-col gap-y-[1em] overflow-hidden">
-                <section className="relative w-full landscape:lg:h-[15em] portrait:h-[70vh] portrait:gap-y-[1em] flex landscape:flex-row portrait:flex-col justify-center landscape:gap-x-[2em]">
+            <section className="relative landscape:lg:w-[75%] portrait:w-full portrait:p-[1em] h-fit flex flex-col gap-y-[2.5em]">
+                <section className="relative w-full landscape:lg:h-[15em] portrait:h-[70vh] portrait:gap-y-[1.5em] flex landscape:flex-row portrait:flex-col justify-center landscape:gap-x-[2em]">
                     <section className="relative landscape:lg:w-[45%] portrait:w-full h-full bg-[#ffffff] flex flex-col items-center rounded-md shadow-light">
                         <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
                             <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
@@ -168,103 +223,123 @@ export default function Home() {
 
                     </section>
                 </section>
-                <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                    <h4 className={'relative font-quicksandBold text-[1.5em] text-gray-500'}>
-                        <span className="capitalize"> sales</span> by <span className="capitalize">sub</span><span className="capitalize">category</span>
-                    </h4>
+                <div className="relative w-full landscape:lg:h-[16em] portrait:h-fit flex portrait:flex-col landscape:flex-row landscape:gap-x-[2em] justify-center portrait:gap-y-[2em]">
+                    <section className="relative landscape:w-[45%] portrait:w-full landscape:lg:h-full portrait:h-[18em] flex justify-center ">
+                        <div className="relative w-full h-full bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
+                            <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
+                                <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
+                                    <span className="capitalize">sales and average order value</span> by <span className="capitalize">month</span>
+                                </h4>
+                            </div>
+                            <ResponsiveContainer width={"100%"} height="90%">
+
+                                <ComposedChart data={monthlySales} margin={{right: 30}}>
+                                   
+                                    <Bar type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
+                                        <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
+                                    </Bar>
+                                    <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
+
+                                    </Line>
+                                    <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
+                                    <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
+                                    <Tooltip />
+                                    <Legend verticalAlign={'top'} fontSize={50} align="center" iconType="rect" iconSize={8} />
+                                </ComposedChart>
+                            </ResponsiveContainer>
+                        </div>
+
+
+                    </section>
+
+                    <section className="relative landscape:w-[45%] portrait:w-full portrait:h-[18em] landscape:lg:h-full flex justify-center">
+                        <div className="relative w-full h-full bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
+                            <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
+                                <h4 className={'relative font-quicksandBold text-[0.8em] text-gray-500'}>
+                                    <span className="capitalize">sales and average order value</span> by <span className="capitalize">week</span>
+                                </h4>
+                            </div>
+                            <ResponsiveContainer width={"100%"} height="90%">
+
+                                <LineChart data={weeklySales}>
+                                    <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
+
+                                    <Line type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
+                                        <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
+                                    </Line>
+                                    <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
+                                        <LabelList dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandBold'} strokeWidth={0.5} stroke='red' />
+                                    </Line>
+                                    <XAxis dataKey={"day"} type="category" fontSize={10} className={'font-quicksandSemiBold'} />
+                                    <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[0, 5000]} stroke='red' strokeWidth={0.5} />
+                                    <YAxis yAxisId={1} fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 5000]} tickCount={5} tickFormatter={(label) => `${'$' + label}k`} stroke='blue' strokeWidth='0.5px' />
+                                    <Tooltip />
+                                    <Legend verticalAlign={'top'} fontSize={50} align="center" type='rect' iconType="rect" iconSize={8} />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+
+
+                    </section>
                 </div>
-                <section className="relative w-full landscape:lg:h-[20em] flex justify-center portrait:p-[0.8em]">
-                    <div className="relative w-[60em] h-[18em] bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
-                        <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                            <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
-                                <span className="capitalize">mobile phone sales and order value</span> by <span className="capitalize">year</span>
-                            </h4>
-                        </div>
-                        <ResponsiveContainer width={"100%"} height="90%">
-
-                            <LineChart data={phoneSales} margin={{ left: 20, right: 20 }}>
-                                <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
-
-                                <Line type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
-                                    <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
-                                </Line>
-                                <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
-                                    <LabelList dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandBold'} strokeWidth={0.5} stroke='red' />
-                                </Line>
-                                <XAxis dataKey={"year"} fontSize={10} className={'font-quicksandSemiBold'} />
-                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[0, 4000]} stroke='red' strokeWidth={0.5} />
-                                <YAxis yAxisId={1} fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 3]} tickCount={5} tickFormatter={(label) => `${'$' + label}m`} stroke='blue' strokeWidth='0.5px' />
-                                <Tooltip />
-                                <Legend verticalAlign={'top'} fontSize={50} align="center" type='rect' iconType="rect" iconSize={8} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-
-                </section>
-
-                <section className="relative w-full landscape:lg:h-[20em] flex justify-center">
-                    <div className="relative w-[60em] h-[18em] bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
-                        <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                            <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
-                                <span className="capitalize">clothing sales and order value</span> by <span className="capitalize">year</span>
-                            </h4>
-                        </div>
-                        <ResponsiveContainer width={"100%"} height="90%">
-
-                            <LineChart data={clothingSales} margin={{ left: 20, right: 20 }}>
-                                <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
-
-                                <Line type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
-                                    <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
-                                </Line>
-                                <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
-                                    <LabelList dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandBold'} strokeWidth={0.5} stroke='red' />
-                                </Line>
-                                <XAxis dataKey={"year"} fontSize={10} className={'font-quicksandSemiBold'} />
-                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[0, 6000]} stroke='red' strokeWidth={0.5} />
-                                <YAxis yAxisId={1} fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 2]} tickCount={5} tickFormatter={(label) => `${'$' + label}m`} stroke='blue' strokeWidth='0.5px' />
-                                <Tooltip />
-                                <Legend verticalAlign={'top'} fontSize={50} align="center" type='rect' iconType="rect" iconSize={8} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-
-                </section>
-
-                <section className="relative w-full landscape:lg:h-[20em] flex justify-center">
-                    <div className="relative w-[60em] h-[18em] bg-[#ffffff] rounded-md shadow-light flex flex-col items-center">
-                        <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
-                            <h4 className={'relative font-quicksandBold text-[1em] text-gray-500'}>
-                                <span className="capitalize">furniture sales and order value</span> by <span className="capitalize">year</span>
-                            </h4>
-                        </div>
-                        <ResponsiveContainer width={"100%"} height="90%">
-                            <LineChart data={furnitureSales} margin={{left: 20, right: 20}}>
-                                <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
-
-                                <Line type={"monotone"} dataKey={"sold"} strokeWidth={0.5} stroke={'blue'} fill={"#2a4994"} >
-                                    <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
-                                </Line>
-                                <Line type={"monotone"} dataKey={"orders"} strokeWidth={0.5} stroke={'red'} fill={"#e11d48"}>
-                                    <LabelList dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandBold'} strokeWidth={0.5} stroke='red' />
-                                </Line>
-                                <XAxis dataKey={"year"} fontSize={10} className={'font-quicksandSemiBold'} />
-                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[0, 6000]} stroke='red' strokeWidth={0.5} />
-                                <YAxis yAxisId={1} fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 2]} tickCount={5} tickFormatter={(label) => `${'$' + label}m`} stroke='blue' strokeWidth='0.5px'/>
-                                <Tooltip />
-                                <Legend verticalAlign={'top'} fontSize={50} align="center" type='rect' iconType="rect" iconSize={8} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-
-                </section>
             </section>
 
-            <section className="relative w-[25%] h-[100vh] bg-blue-300 z-10">
+            <section className="relative landscape:w-[25%] portrait:w-full landscape:h-[100vh] portrait:h-fit z-10 flex flex-col gap-y-[15px] items-center portrait:p-[1em]">
 
+                <div className="relative landscape:w-[95%] portrait:w-full landscape:lg:h-[20em] portrait:h-[23em] bg-[#ffffff] rounded-md shadow-light">
+                    <div className="relative w-full landscape:lg:h-[5em] flex flex-col justify-center">
+                        <h4 className="relative capitalize text-[0.85em] font-quicksandSemiBold text-gray-600">
+                            product returned most
+                        </h4>
+
+                        <h2 className="relative font-quicksandBold text-rose-700 text-[2em] capitalize">
+                            kitchen and dining
+                        </h2>
+                    </div>
+
+                    < hr className="relative w-[90%] mx-auto border-gray-500" />
+                    <ResponsiveContainer width={'100%'} height={'70%'}>
+                        <PieChart>
+                            <Pie data={pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#9447ff" />
+                            <Pie data={pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} label={renderLabel} fontSize={13}>
+                                {
+                                    pieSales.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={colors[index]} />
+                                    ))
+                                }
+                            </Pie>
+                            <Legend align="center" verticalAlign='bottom' type="circle" payload={[{ value: 'delivered', type: 'circle', id: 0, color: '#2a4994' }, { value: 'returned', type: 'circle', id: 1, color: '#e11d48' }]} iconSize={10} />
+                            <Tooltip />
+                        </PieChart>
+                    </ResponsiveContainer>
+                </div>
+
+
+                <div className="relative landscape:w-[95%] portrait:w-full h-fit bg-[#ffffff] rounded-md shadow-light overflow-hidden">
+                    <div className="relative w-full landscape:lg:h-[2em] bg-[#a8b6d3] flex items-center pl-2">
+                        <h3 className="relative font-quicksandRegular text-[0.9em] capitalize text-gray-700 text-start">
+                            reason for return
+                        </h3>
+                    </div>
+                    <div className="relative w-full h-fit ">
+                        {
+                            returnReasons.map((reason, index) => (
+
+                                <div key={index} id="reasons" className="relative w-full h-[2em] flex flex-row items-center justify-between pl-2 pr-2">
+                                    <p className="relative capitalize text-gray-800 font-quicksandRegular text-[0.8em]">
+                                        {
+                                            reason.type + '-' + reason.reason
+                                        }
+                                    </p>
+
+                                    <p className="relative font-quicksandRegular text-[0.8em] text-gray-800">
+                                        {reason.count}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             </section>
         </section>
     )

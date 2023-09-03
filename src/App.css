@@ -37,3 +37,8 @@
     transform: rotate(360deg);
   }
 }
+
+/**id reasons for returned orders*/
+#reasons:nth-child(2n) {
+  background-color: #d3d8e0;
+}
