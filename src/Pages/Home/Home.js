@@ -229,8 +229,6 @@ export default function Home() {
                                     </Line>
                                     <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
                                     <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
-
-                                    <Legend verticalAlign={'top'} fontSize={50} align="center" iconType="rect" iconSize={8} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </div>
