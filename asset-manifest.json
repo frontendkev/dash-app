@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dash-app/static/css/main.4fb9c7a2.css",
-    "main.js": "/dash-app/static/js/main.49825852.js",
+    "main.js": "/dash-app/static/js/main.d0247c14.js",
     "static/js/496.23633eb8.chunk.js": "/dash-app/static/js/496.23633eb8.chunk.js",
     "static/media/Quicksand-Regular.ttf": "/dash-app/static/media/Quicksand-Regular.04b11c8f0d4d58c1bed1.ttf",
     "static/media/Quicksand-SemiBold.ttf": "/dash-app/static/media/Quicksand-SemiBold.80ffdcf8e73fc889b11f.ttf",
@@ -9,11 +9,11 @@
     "static/media/logo.svg": "/dash-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/dash-app/index.html",
     "main.4fb9c7a2.css.map": "/dash-app/static/css/main.4fb9c7a2.css.map",
-    "main.49825852.js.map": "/dash-app/static/js/main.49825852.js.map",
+    "main.d0247c14.js.map": "/dash-app/static/js/main.d0247c14.js.map",
     "496.23633eb8.chunk.js.map": "/dash-app/static/js/496.23633eb8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4fb9c7a2.css",
-    "static/js/main.49825852.js"
+    "static/js/main.d0247c14.js"
   ]
 }
