@@ -98,7 +98,7 @@ export default function Home() {
         },
     ]
 
-    
+
 
     const categorySales = [
         {
@@ -197,7 +197,7 @@ export default function Home() {
                         </div>
                         <ResponsiveContainer width='100%' height="100%">
 
-                            <BarChart data={monthlySales} margin={{right: 30}}>
+                            <BarChart data={monthlySales} margin={{ right: 30 }}>
                                 <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
                                 <Tooltip />
                                 <Bar type={"monotone"} dataKey={"sold"} fill={"#6a80b4"} radius={2} >
@@ -221,7 +221,7 @@ export default function Home() {
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <LineChart data={monthlySales} margin={{right: 30}}>
+                                <LineChart data={monthlySales} margin={{ right: 30 }}>
                                     <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
                                     <Tooltip />
                                     <Line type={"monotone"} dataKey={"orders"} strokeWidth={1} stroke={'red'} fill={"#e11d48"} opacity={0.8}>
@@ -247,14 +247,14 @@ export default function Home() {
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <BarChart data={categorySales} margin={{left:30}}>
+                                <BarChart data={categorySales} margin={{ left: 30 }}>
                                     <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
                                     <Tooltip />
                                     <Bar type={"monotone"} dataKey={'sold'} barSize={60} fill={'#6a80b4'}>
                                         <LabelList stroke="blue" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandBold'} />
                                     </Bar>
                                     <XAxis dataKey={"category"} type="category" fontSize={10} className={'font-quicksandSemiBold'} />
-                                    
+
                                     <YAxis fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 5000]} tickCount={5} tickFormatter={(label) => `${'$' + label}k`} stroke='blue' strokeWidth='0.5px' />
 
                                 </BarChart>
