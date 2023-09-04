@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'quicksandBold';
+  src: url('/src/fonts/Quicksand/static/Quicksand-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'quicksandRegular';
+  src: url('/src/fonts/Quicksand/static/Quicksand-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'quicksandSemiBold';
+  src: url('/src/fonts/Quicksand/static/Quicksand-SemiBold.ttf');
+}
+
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont,quicksandRegular, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #d3d8e0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
