@@ -16,6 +16,7 @@ import {
     Pie,
     Cell
 } from "recharts";
+import Options from "../../Components/Options/Options";
 
 
 export default function Home() {
@@ -167,10 +168,11 @@ export default function Home() {
 
     return (
         <section className={'relative w-full landscape:h-[85vh] portrait:min-h-screen flex landscape:flex-row portrait:flex-col bg-[#d3d8e0] overflow-hidden'}>
-            <div className="absolute w-full landscape:lg:h-[8em] bg-[#253761]">
-
+            <div className="absolute w-full portrait:h-[10em] landscape:lg:h-[8em] bg-[#253761]">
+               
             </div>
-            <section className="relative landscape:lg:w-[75%] portrait:w-full portrait:p-[1em] h-fit flex flex-col gap-y-[2.5em]">
+            
+            <section className="relative landscape:lg:w-[75%] portrait:w-full portrait:p-[1em] h-fit flex flex-col gap-y-[2.5em] z-[6]">
                 <section className="relative w-full landscape:lg:h-[15em] portrait:h-[70vh] portrait:gap-y-[1.5em] flex landscape:flex-row portrait:flex-col justify-center landscape:gap-x-[2em]">
                     <section className="relative landscape:lg:w-[45%] portrait:w-full h-full bg-[#ffffff] flex flex-col items-center rounded-md shadow-light">
                         <div className="relative w-full landscape:lg:h-[3em] flex items-center justify-start pl-[2em]">
