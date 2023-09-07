@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import {
     Bar,
     CartesianGrid,
@@ -16,155 +17,25 @@ import {
     Pie,
     Cell
 } from "recharts";
-import Options from "../../Components/Options/Options";
+import { dashActions, dashState, FETCH_SALES } from "../../DashContext/DashReducer";
 
 
 export default function Home() {
-    const locationData = [
-        {
-            name: "abuja", sales: 80, totalSales: "$3.5m"
-        },
-        {
-            name: "kano", sales: 64, totalSales: "$2.8m"
-        },
-        {
-            name: "lagos", sales: 56, totalSales: "$2.4m"
-        },
-        {
-            name: "ghana", sales: 44, totalSales: "$1.9m"
-        },
-        {
-            name: "london", sales: 36, totalSales: "$1.5m"
-        }
-    ]
-
-
-    const salesData = [
-        {
-            year: 2018, orders: 600, sales: 820, x: "$1.8m"
-        },
-        {
-            year: 2019, orders: 1000, sales: 1205, x: "$2.5m"
-        },
-        {
-            year: 2020, orders: 500, sales: 950, x: "$2m"
-        },
-        {
-            year: 2021, orders: 800, sales: 1160, x: "$2.2m"
-        },
-        {
-            year: 2022, orders: 1240, sales: 900, x: "$1.9m"
-        },
-        {
-            year: 2023, orders: 1300, sales: 1500, x: "$3m"
-        },
-    ]
-
-    const monthlySales = [
-        {
-            month: 'jan', sold: 20000, sales: "$2m", orders: 15000
-        },
-        {
-            month: "feb", sold: 45000, sales: "$4.5m", orders: 20000
-        },
-        {
-            month: "mar", sold: 30000, sales: "$3m", orders: 35000
-        },
-        {
-            month: "apr", sold: 40000, sales: "$4m", orders: 45000
-        },
-        {
-            month: "may", sold: 25000, sales: "$2.5m", orders: 20000
-        },
-        {
-            month: "jun", sold: 35000, sales: "$3.5m", orders: 30000
-        },
-        {
-            month: 'jul', sold: 50000, sales: "$5.5m", orders: 50000
-        },
-        {
-            month: "aug", sold: 40000, sales: "$4m", orders: 25000
-        },
-        {
-            month: "sep", sold: 45000, sales: "$4.5m", orders: 40000
-        },
-        {
-            month: "oct", sold: 25000, sales: "$2.5m", orders: 30000
-        },
-        {
-            month: "nov", sold: 40000, sales: "$4m", orders: 40000
-        },
-        {
-            month: "dec", sold: 45000, sales: "$4.5m", orders: 55000
-        },
-    ]
-
-
-
-    const categorySales = [
-        {
-            category: 'phones', sold: 800, sales: "$800k"
-        },
-        {
-            category: 'tablets', sold: 2700, sales: "$270k"
-        },
-        {
-            category: 'home audio', sold: 1700, sales: "$170k"
-        },
-        {
-            category: 'tv sets', sold: 1000, sales: "$100k"
-        }
-    ]
-
+    const dashContext = useContext(dashState)
+    const dashDispatch = useContext(dashActions)
 
     const colors = [
         '#2a4994', '#e11d48'
-    ]
-
-    const pieSales = [
-        {
-            name: 'delivered',
-            value: 80,
-            percentage: '80%'
-        },
-        {
-            name: 'returned',
-            value: 20,
-            percentage: "20%"
-        }
     ]
 
     function renderLabel(entry) {
         return entry.percentage
     }
 
-    const returnReasons = [
-        {
-            type: 'delivery',
-            reason: 'wrong item',
-            count: 345
-        },
-        {
-            type: 'product',
-            reason: 'not fitting expectation',
-            count: 138
-        },
-        {
-            type: 'quality',
-            reason: 'defective item',
-            count: 531
-        },
-        {
-            type: 'onsite',
-            reason: 'description mismatch',
-            count: 145
-        },
-        {
-            type: 'delivery',
-            reason: 'missing item/part',
-            count: 215
-        }
-    ]
+
+    useEffect(() => {
+        dashDispatch({type: FETCH_SALES, payload: 2023})
+    }, [])
 
     return (
         <section className={'relative w-full landscape:h-[85vh] portrait:min-h-screen flex landscape:flex-row portrait:flex-col bg-[#d3d8e0] overflow-hidden'}>
@@ -181,7 +52,7 @@ export default function Home() {
                             </h4>
                         </div>
                         <ResponsiveContainer width='100%' height="100%">
-                            <BarChart margin={{ top: 30, left: 30, right: 30, bottom: 20 }} data={locationData}>
+                            <BarChart margin={{ top: 30, left: 30, right: 30, bottom: 20 }} data={dashContext.salesByLocation}>
                                 <Tooltip />
                                 <Bar dataKey={"sales"} barSize={60} fill={"#6a80b4"}>
                                     <LabelList dataKey={"totalSales"} position={'top'} fontSize={13} className={'font-quicksandBold'} />
@@ -199,14 +70,14 @@ export default function Home() {
                         </div>
                         <ResponsiveContainer width='100%' height="100%">
 
-                            <BarChart data={monthlySales} margin={{ right: 30 }}>
+                            <BarChart data={dashContext.salesByMonth} margin={{ right: 30 }}>
                                 <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
                                 <Tooltip />
                                 <Bar type={"monotone"} dataKey={"sold"} fill={"#6a80b4"} radius={2} >
                                     <LabelList stroke="grey" strokeWidth={0.5} dataKey={"sales"} position={'top'} fontSize={10} className={'font-quicksandRegular'} />
                                 </Bar>
                                 <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
-                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
+                                <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', dashContext.dataMax]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
 
                             </BarChart>
                         </ResponsiveContainer>
@@ -223,14 +94,14 @@ export default function Home() {
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <LineChart data={monthlySales} margin={{ right: 30 }}>
+                                <LineChart data={dashContext.salesByMonth} margin={{ right: 30 }}>
                                     <CartesianGrid stroke={'#6a80b4'} strokeDasharray={"3 3"} opacity={'0.5'} />
                                     <Tooltip />
                                     <Line type={"monotone"} dataKey={"orders"} strokeWidth={1} stroke={'red'} fill={"#e11d48"} opacity={0.8}>
                                         <LabelList stroke="grey" strokeWidth={0.5} dataKey={"orders"} position={'top'} fontSize={10} className={'font-quicksandRegular'} />
                                     </Line>
                                     <XAxis dataKey={"month"} type={'category'} fontSize={10} className={'font-quicksandSemiBold'} />
-                                    <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={['dataMin', 60000]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
+                                    <YAxis type={'number'} yAxisId={0} fontSize={9} className={'font-quicksandBold'} domain={[5000, dashContext.dataMax]} stroke='red' strokeWidth={0.5} tickCount={5} dataKey={'orders'} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </div>
@@ -247,7 +118,7 @@ export default function Home() {
                             </div>
                             <ResponsiveContainer width={"100%"} height="90%">
 
-                                <BarChart data={categorySales} margin={{ left: 30 }}>
+                                <BarChart data={dashContext.salesByCategory} margin={{ left: 30 }}>
                                     <CartesianGrid stroke={'blue'} opacity={0.3} strokeDasharray={"3 3"} />
                                     <Tooltip />
                                     <Bar type={"monotone"} dataKey={'sold'} barSize={60} fill={'#6a80b4'}>
@@ -255,7 +126,7 @@ export default function Home() {
                                     </Bar>
                                     <XAxis dataKey={"category"} type="category" fontSize={10} className={'font-quicksandSemiBold'} />
 
-                                    <YAxis fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 5000]} tickCount={5} tickFormatter={(label) => `${'$' + label}k`} stroke='blue' strokeWidth='0.5px' />
+                                    <YAxis fontSize={9} className={'font-quicksandBold'} orientation={'right'} domain={[0, 500000]} tickCount={5} tickFormatter={(label) => `${'$' + label}`} stroke='blue' strokeWidth='0.5px' />
 
                                 </BarChart>
                             </ResponsiveContainer>
@@ -275,17 +146,17 @@ export default function Home() {
                         </h4>
 
                         <h2 className="relative font-quicksandBold text-rose-700 text-[2em] capitalize">
-                            kitchen and dining
+                            {dashContext.returnedMost}
                         </h2>
                     </div>
 
                     < hr className="relative w-[90%] mx-auto border-gray-500" />
                     <ResponsiveContainer width={'100%'} height={'70%'}>
                         <PieChart>
-                            <Pie data={pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#9447ff" />
-                            <Pie data={pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} label={renderLabel} fontSize={13}>
+                            <Pie data={dashContext.pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#9447ff" />
+                            <Pie data={dashContext.pieSales} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} label={renderLabel} fontSize={13}>
                                 {
-                                    pieSales.map((entry, index) => (
+                                    dashContext && dashContext.pieSales.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={colors[index]} />
                                     ))
                                 }
@@ -305,7 +176,7 @@ export default function Home() {
                     </div>
                     <div className="relative w-full h-fit ">
                         {
-                            returnReasons.map((reason, index) => (
+                            dashContext && dashContext.returnReasons.map((reason, index) => (
 
                                 <div key={index} id="reasons" className="relative w-full h-[2em] flex flex-row items-center justify-between pl-2 pr-2">
                                     <p className="relative capitalize text-gray-800 font-quicksandRegular text-[0.8em]">
