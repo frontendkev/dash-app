@@ -1,6 +1,6 @@
 import NavSelect from "../Components/NavSelect";
 import { useContext, useState } from "react";
-import { dashState, dashActions, SHOW_CATEGORY, SHOW_YEAR, FETCH_SALES, FETCH_PHONE_SALES } from "../DashContext/DashReducer";
+import { dashState, dashActions, SHOW_CATEGORY, SHOW_YEAR, FETCH_SALES, FETCH_PHONE_SALES, FETCH_TABLET_SALES, FETCH_AUDIO_SALES, FETCH_TV_SALES } from "../DashContext/DashReducer";
 
 export default function NavBar() {
     const dashContext = useContext(dashState)
@@ -63,7 +63,25 @@ export default function NavBar() {
                 dashDispatch({ type: SHOW_YEAR, payload: !dashContext.showYear })
                 dashDispatch({ type: FETCH_PHONE_SALES, payload: value })
                 break;
-                }
+            }
+            case 'tablets': {
+                setYearDefault(() => value)
+                dashDispatch({ type: SHOW_YEAR, payload: !dashContext.showYear })
+                dashDispatch({ type: FETCH_TABLET_SALES, payload: value })
+                break;
+            }
+            case 'home & audio': {
+                setYearDefault(() => value)
+                dashDispatch({ type: SHOW_YEAR, payload: !dashContext.showYear })
+                dashDispatch({ type: FETCH_AUDIO_SALES, payload: value })
+                break;
+            }
+            case 'tv sets': {
+                setYearDefault(() => value)
+                dashDispatch({ type: SHOW_YEAR, payload: !dashContext.showYear })
+                dashDispatch({ type: FETCH_TV_SALES, payload: value })
+                break;
+            }
             default: {
                 return categoryDefault;
                 }
@@ -81,6 +99,24 @@ export default function NavBar() {
                 dashDispatch({ type: FETCH_PHONE_SALES, payload: yearDefault })
                 dashDispatch({ type: SHOW_CATEGORY, payload: !dashContext.showCategory })
                 setCategoryDefault(() => value)
+                break;
+            }
+            case 'tablets': {
+                dashDispatch({ type: SHOW_CATEGORY, payload: !dashContext.showCategory })
+                setCategoryDefault(() => value)
+                dashDispatch({ type: FETCH_TABLET_SALES, payload: yearDefault })
+                break;
+            }
+            case 'home & audio': {
+                dashDispatch({ type: SHOW_CATEGORY, payload: !dashContext.showCategory })
+                setCategoryDefault(() => value)
+                dashDispatch({ type: FETCH_AUDIO_SALES, payload: yearDefault })
+                break;
+            }
+            case 'tv sets': {
+                dashDispatch({ type: SHOW_CATEGORY, payload: !dashContext.showCategory })
+                setCategoryDefault(() => value)
+                dashDispatch({ type: FETCH_TV_SALES, payload: yearDefault })
                 break;
             }
             default: {
