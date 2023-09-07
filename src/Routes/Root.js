@@ -11,8 +11,10 @@ export default function Root () {
             <main>
                 <Outlet />
             </main>
-            <footer>
-
+            <footer className="relative w-full h-[2.5em] bg-[#6A80B4] flex items-center justify-center">
+                <h2 className="relative font-quicksandSemiBold capitalize text-gray-200 text-[0.8em]">
+                    made by kevfrontdev@gmail.com
+                </h2>
             </footer>
         </section>
     )

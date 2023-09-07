@@ -125,9 +125,9 @@ export default function NavBar() {
         }
     }
     return (
-        <nav className={'relative w-full portrait:h-[4em] landscape:lg:h-[5em] bg-[#253761] flex flex-row justify-between items-center pl-[2em] pr-[2em]'}>
+        <nav className={'relative w-full portrait:h-[8em] landscape:lg:h-[5em] bg-[#253761] flex landscape:flex-row justify-between items-center pl-[2em] pr-[2em] portrait:flex-col portrait:pb-4 landscape:h-[4em]'}>
             <div className="relative w-fit h-full flex items-center">
-                <h2 className="relative landscape:text-[2em] portrait:text-[1em] font-quicksandSemiBold text-gray-100 text-start capitalize">
+                <h2 className="relative landscape:text-[2em] portrait:text-[0.8em] font-quicksandSemiBold text-gray-100 text-start capitalize">
                     e-commerce sales analysis
                 </h2>
             </div>
